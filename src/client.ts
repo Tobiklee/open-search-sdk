@@ -24,6 +24,10 @@ export type ClientProps = {
    * Inject fetch options. Options will be attached to every request.
    */
   fetchOptions?: RequestInit;
+
+  signOptions?: {
+    region: string;
+  };
 }
 
 export class Client implements IClient {
@@ -31,13 +35,17 @@ export class Client implements IClient {
 
   readonly fetchOptions?: RequestInit;
 
+  readonly signOptions?: { region: string };
+
   constructor(props: ClientProps) {
     const {
       endpoint,
       fetchOptions,
+      signOptions,
     } = props;
     this.endpoint = endpoint;
     this.fetchOptions = fetchOptions;
+    this.signOptions = signOptions;
   }
 
   execute<T>(command: ICommand<T>): Promise<SearchResponse<T> | undefined> {

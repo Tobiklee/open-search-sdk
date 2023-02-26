@@ -29,9 +29,12 @@ export class SearchCommand<T> implements ICommand<T> {
   }
 
   // TODO include error handling
-  async fetch(baseUrl: string, fetchProps?: RequestInit): Promise<SearchResponse<T> | undefined> {
+  async fetch(baseUrl: string, fetchProps?: RequestInit, signOptions?: { region: string }): Promise<SearchResponse<T> | undefined> {
     const opts: RequestInit = {
-      ...fetchProps,
+      ...{
+        ...fetchProps,
+        signOptions,
+      },
       body: JSON.stringify(<SearchRequestBody>{
         query: this.query,
         ...this.options,
@@ -45,7 +48,7 @@ export class SearchCommand<T> implements ICommand<T> {
         operation: EnumOperation.Search,
       });
       if (response.status === 200) {
-        return await response.json();
+        return response.data as SearchResponse<T>;
       }
       return undefined;
     } catch (e) {

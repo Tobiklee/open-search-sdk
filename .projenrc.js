@@ -26,14 +26,14 @@ const project = new typescript.TypeScriptProject({
   repository: 'https://github.com/Tobiklee/open-search-sdk.git',
   tsconfig: tsconfig,
   tsconfigDev: tsconfig,
+  jest: false,
   keywords: [
     'opensearch',
   ],
   deps: [
     '@elastic/elasticsearch@^8',
-  ],
-  devDeps: [
-    '@types/jest@^27.0.0',
+    'axios',
+    'aws4-axios',
   ],
 });
 

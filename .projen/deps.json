@@ -1,10 +1,6 @@
 {
   "dependencies": [
     {
-      "name": "@types/jest",
-      "type": "build"
-    },
-    {
       "name": "@types/node",
       "version": "^14",
       "type": "build"
@@ -37,15 +33,6 @@
       "type": "build"
     },
     {
-      "name": "jest",
-      "type": "build"
-    },
-    {
-      "name": "jest-junit",
-      "version": "^13",
-      "type": "build"
-    },
-    {
       "name": "npm-check-updates",
       "version": "^16",
       "type": "build"
@@ -60,16 +47,20 @@
       "type": "build"
     },
     {
-      "name": "ts-jest",
-      "type": "build"
-    },
-    {
       "name": "typescript",
       "type": "build"
     },
     {
       "name": "@elastic/elasticsearch",
       "version": "^8",
+      "type": "runtime"
+    },
+    {
+      "name": "aws4-axios",
+      "type": "runtime"
+    },
+    {
+      "name": "axios",
       "type": "runtime"
     }
   ],

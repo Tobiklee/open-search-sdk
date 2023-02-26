@@ -21,7 +21,7 @@ const project = new typescript.TypeScriptProject({
   licensed: true,
   releaseToNpm: true,
   npmAccess: NpmAccess.PUBLIC,
-  packageManager: NodePackageManager.PNPM,
+  packageManager: NodePackageManager.NPM,
   majorVersion: 0,
   repository: 'https://github.com/Tobiklee/open-search-sdk.git',
   tsconfig: tsconfig,
@@ -31,6 +31,8 @@ const project = new typescript.TypeScriptProject({
   ],
   deps: [
     '@elastic/elasticsearch@^8',
+  ],
+  devDeps: [
     '@types/jest@^27.0.0',
   ],
 });

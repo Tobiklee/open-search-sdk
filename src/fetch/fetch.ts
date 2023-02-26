@@ -21,7 +21,7 @@ export const doFetch = async (props: FetchProps) => {
       region: options.signOptions.region,
       service: 'es',
     });
-    axios.interceptors.request.use(interceptor as any);
+    axios.interceptors.request.use(interceptor);
   }
   return axios.post(
     `${baseUrl}/${index}/${operation}`,

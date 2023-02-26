@@ -61,6 +61,7 @@
     },
     {
       "name": "axios",
+      "version": "0.25.0",
       "type": "runtime"
     }
   ],

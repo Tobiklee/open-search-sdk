@@ -15,7 +15,7 @@ const tsconfig = {
 
 const project = new typescript.TypeScriptProject({
   defaultReleaseBranch: 'main',
-  name: 'simple-search',
+  name: '@tobiklee/open-search-sdk',
   authorName: 'Tobias Kleemann',
   license: 'Apache-2.0',
   licensed: true,

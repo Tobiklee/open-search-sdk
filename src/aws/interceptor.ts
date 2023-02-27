@@ -1,18 +1,18 @@
 import { Signer } from 'aws-amplify';
 import { AxiosRequestConfig } from 'axios';
 
-export interface InterceptorOptions {
+export type InterceptorOptions = {
   service: string;
   region: string;
 }
 
-export interface ICredentials {
+export type Credentials = {
   accessKeyId: string;
   secretAccessKey: string;
   sessionToken?: string;
 }
 
-export const aws4Interceptor = (options: InterceptorOptions, credentials?: ICredentials) => (cfg: AxiosRequestConfig) => {
+export const aws4Interceptor = (options: InterceptorOptions, credentials?: Credentials) => (cfg: AxiosRequestConfig) => {
   const request = {
     method: cfg.method?.toUpperCase(),
     url: cfg.url,

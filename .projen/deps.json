@@ -51,16 +51,20 @@
       "type": "build"
     },
     {
-      "name": "@aws-sdk/node-config-provider",
+      "name": "@aws-crypto/sha256-js",
+      "type": "runtime"
+    },
+    {
+      "name": "@aws-sdk/signature-v4",
+      "type": "runtime"
+    },
+    {
+      "name": "@aws-sdk/types",
       "type": "runtime"
     },
     {
       "name": "@elastic/elasticsearch",
       "version": "^8",
-      "type": "runtime"
-    },
-    {
-      "name": "aws-amplify",
       "type": "runtime"
     },
     {

@@ -31,10 +31,14 @@ const project = new typescript.TypeScriptProject({
     'opensearch',
   ],
   deps: [
-    '@elastic/elasticsearch@^8',
+    // aws
+    '@aws-sdk/types',
+    '@aws-sdk/signature-v4',
+    '@aws-crypto/sha256-js',
+
+    // other
+    '@elastic/elasticsearch@^8', // TODO remove after adding types directly to project
     'axios',
-    'aws-amplify',
-    '@aws-sdk/node-config-provider',
   ],
 });
 

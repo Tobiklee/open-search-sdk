@@ -1,5 +1,5 @@
 import { ICommand } from './commands';
-import { SignOptions } from './fetch';
+import { FetchProps } from './fetch';
 import { SearchResponse } from './models';
 
 export interface IClient {
@@ -24,27 +24,21 @@ export type ClientProps = {
   /**
    * Inject fetch options. Options will be attached to every request.
    */
-  fetchOptions?: RequestInit;
-
-  signOptions?: SignOptions;
+  fetchOptions?: FetchProps;
 }
 
 export class Client implements IClient {
   readonly endpoint: string;
 
-  readonly fetchOptions?: RequestInit;
-
-  readonly signOptions?: { region: string };
+  readonly fetchOptions?: FetchProps;
 
   constructor(props: ClientProps) {
     const {
       endpoint,
       fetchOptions,
-      signOptions,
     } = props;
     this.endpoint = endpoint;
     this.fetchOptions = fetchOptions;
-    this.signOptions = signOptions;
   }
 
   execute<T>(command: ICommand<T>): Promise<SearchResponse<T> | undefined> {

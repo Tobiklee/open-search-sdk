@@ -1,37 +1,36 @@
-import axios from 'axios';
-import { aws4Interceptor, Credentials } from '../aws';
+import axios, { AxiosRequestConfig } from 'axios';
+import { createSignature, createSignedRequest, SignProps, toAxios } from '../aws';
 import { EnumOperation } from '../fetch';
-
-export type SignOptions = Credentials & {
-  region: string;
-}
 
 export type FetchProps = {
   baseUrl: string;
   operation: EnumOperation;
+  body?: Record<string, any>;
   index?: string;
-  options?: RequestInit & { signOptions?: SignOptions };
+  options?: AxiosRequestConfig & { signOptions: SignProps };
 }
 
 export const doFetch = async (props: FetchProps) => {
   const {
     baseUrl,
     operation,
+    body,
     index,
     options,
   } = props;
+  const url = `${baseUrl}/${index}/${operation}`;
   if (options?.signOptions) {
-    const interceptor = aws4Interceptor(
-      {
-        region: options.signOptions.region,
-        service: 'es',
-      },
-      options.signOptions,
-    );
-    axios.interceptors.request.use(interceptor);
+    const signature = await createSignature(options.signOptions);
+    const signedRequest = await createSignedRequest({
+      signature,
+      url,
+      method: 'POST',
+      body: body,
+    });
+    return toAxios(signedRequest, url);
   }
   return axios.post(
-    `${baseUrl}/${index}/${operation}`,
-    options?.body,
+    url,
+    body,
   );
 };

@@ -2,7 +2,7 @@
 import { QueryDslQueryContainer } from '@elastic/elasticsearch/lib/api/types';
 
 import { ICommand } from './interface';
-import { doFetch, EnumOperation, SignOptions } from '../fetch';
+import { doFetch, EnumOperation, FetchProps } from '../fetch';
 import { SearchResponse } from '../models';
 import { SearchRequestBody } from '../models/search-request-body';
 
@@ -29,20 +29,10 @@ export class SearchCommand<T> implements ICommand<T> {
   }
 
   // TODO include error handling
-  async fetch(baseUrl: string, fetchProps?: RequestInit, signOptions?: SignOptions): Promise<SearchResponse<T> | undefined> {
-    const opts: RequestInit = {
-      ...{
-        ...fetchProps,
-        signOptions,
-      },
-      body: JSON.stringify(<SearchRequestBody>{
-        query: this.query,
-        ...this.options,
-      }),
-    };
+  async fetch(baseUrl: string, fetchProps?: FetchProps): Promise<SearchResponse<T> | undefined> {
     try {
       const response = await doFetch({
-        ...opts,
+        ...fetchProps,
         baseUrl: baseUrl,
         index: this.index,
         operation: EnumOperation.Search,

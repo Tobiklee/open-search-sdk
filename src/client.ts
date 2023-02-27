@@ -1,4 +1,5 @@
 import { ICommand } from './commands';
+import { SignOptions } from './fetch';
 import { SearchResponse } from './models';
 
 export interface IClient {
@@ -25,9 +26,7 @@ export type ClientProps = {
    */
   fetchOptions?: RequestInit;
 
-  signOptions?: {
-    region: string;
-  };
+  signOptions?: SignOptions;
 }
 
 export class Client implements IClient {

@@ -1,5 +1,6 @@
-import { ICommand } from './commands';
-import { FetchProps } from './fetch';
+import { AxiosRequestConfig } from 'axios';
+import { SignProps } from './aws';
+import { FetchOptions, ICommand } from './commands';
 import { SearchResponse } from './models';
 
 export interface IClient {
@@ -24,13 +25,13 @@ export type ClientProps = {
   /**
    * Inject fetch options. Options will be attached to every request.
    */
-  fetchOptions?: FetchProps;
+  fetchOptions?: AxiosRequestConfig & { signOptions: SignProps };
 }
 
 export class Client implements IClient {
   readonly endpoint: string;
 
-  readonly fetchOptions?: FetchProps;
+  readonly fetchOptions?: FetchOptions;
 
   constructor(props: ClientProps) {
     const {

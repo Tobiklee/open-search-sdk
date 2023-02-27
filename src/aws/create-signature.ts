@@ -1,7 +1,7 @@
 import { Sha256 } from '@aws-crypto/sha256-js';
 import { SignatureV4 } from '@aws-sdk/signature-v4';
 
-export type SignProps = {
+export type CreateSignatureProps = {
   service: string;
   region: string;
   accessKeyId: string;
@@ -9,7 +9,7 @@ export type SignProps = {
   sessionToken?: string;
 }
 
-export const createSignature = (props: SignProps): SignatureV4 => {
+export const createSignature = (props: CreateSignatureProps): SignatureV4 => {
   const {
     service,
     region,

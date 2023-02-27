@@ -1,0 +1,8 @@
+{
+  "Service": "es",
+  "Region": "eu-central-1",
+  "SecretAccessKey": "SecretAccessKey",
+  "AccessKeyId": "AccessKeyId",
+  "URL": "https://google.de",
+  "Index": "super_awesome_index"
+}

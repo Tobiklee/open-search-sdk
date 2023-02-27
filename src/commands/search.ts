@@ -1,9 +1,7 @@
-// TODO move type from remote repository to local repository
 import { QueryDslQueryContainer } from '@elastic/elasticsearch/lib/api/types';
 import { FetchOptions, ICommand } from './interface';
 import { doFetch, EnumOperation } from '../fetch';
-import { SearchResponse } from '../models';
-import { SearchRequestBody } from '../models/search-request-body';
+import { SearchRequestBody, SearchResponse } from '../models';
 
 export type SearchCommandProps = {
   query: QueryDslQueryContainer;
@@ -31,8 +29,8 @@ export class SearchCommand<T> implements ICommand<T> {
   async fetch(baseUrl: string, options?: FetchOptions): Promise<SearchResponse<T> | undefined> {
     try {
       const response = await doFetch({
-        ...options,
-        baseUrl: baseUrl,
+        options,
+        baseUrl,
         index: this.index,
         operation: EnumOperation.Search,
       });

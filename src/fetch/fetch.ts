@@ -1,5 +1,6 @@
-import axios, { AxiosRequestConfig } from 'axios';
-import { createSignature, createSignedRequest, SignProps, toAxios } from '../aws';
+import axios from 'axios';
+import { createSignature, createSignedRequest, toAxios } from '../aws';
+import { FetchOptions } from '../commands';
 import { EnumOperation } from '../fetch';
 
 export type FetchProps = {
@@ -7,7 +8,7 @@ export type FetchProps = {
   operation: EnumOperation;
   body?: Record<string, any>;
   index?: string;
-  options?: AxiosRequestConfig & { signOptions: SignProps };
+  options?: FetchOptions;
 }
 
 export const doFetch = async (props: FetchProps) => {
@@ -20,12 +21,12 @@ export const doFetch = async (props: FetchProps) => {
   } = props;
   const url = `${baseUrl}/${index}/${operation}`;
   if (options?.signOptions) {
-    const signature = await createSignature(options.signOptions);
+    const signature = createSignature(options.signOptions);
     const signedRequest = await createSignedRequest({
       signature,
       url,
       method: 'POST',
-      body: body,
+      body,
     });
     return toAxios(signedRequest, url);
   }

@@ -1,5 +1,3 @@
-import { AxiosRequestConfig } from 'axios';
-import { SignProps } from './aws';
 import { FetchOptions, ICommand } from './commands';
 import { SearchResponse } from './models';
 
@@ -25,7 +23,7 @@ export type ClientProps = {
   /**
    * Inject fetch options. Options will be attached to every request.
    */
-  fetchOptions?: AxiosRequestConfig & { signOptions: SignProps };
+  fetchOptions?: FetchOptions;
 }
 
 export class Client implements IClient {

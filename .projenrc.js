@@ -26,7 +26,7 @@ const project = new typescript.TypeScriptProject({
   repository: 'https://github.com/Tobiklee/open-search-sdk.git',
   tsconfig: tsconfig,
   tsconfigDev: tsconfig,
-  jest: false,
+  jest: true,
   keywords: [
     'opensearch',
   ],
@@ -44,5 +44,6 @@ const project = new typescript.TypeScriptProject({
 
 // gitignore
 project.addGitIgnore('.idea');
+project.addGitIgnore('test-env-local.json');
 
 project.synth();

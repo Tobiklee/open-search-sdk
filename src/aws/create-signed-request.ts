@@ -2,16 +2,16 @@ import { SignatureV4 } from '@aws-sdk/signature-v4';
 import { HttpRequest } from '@aws-sdk/types';
 
 export type HttpMethod =
-  | 'get' | 'GET'
-  | 'delete' | 'DELETE'
-  | 'head' | 'HEAD'
-  | 'options' | 'OPTIONS'
-  | 'post' | 'POST'
-  | 'put' | 'PUT'
-  | 'patch' | 'PATCH'
-  | 'purge' | 'PURGE'
-  | 'link' | 'LINK'
-  | 'unlink' | 'UNLINK';
+  'GET'
+  | 'DELETE'
+  | 'HEAD'
+  | 'OPTIONS'
+  | 'POST'
+  | 'PUT'
+  | 'PATCH'
+  | 'PURGE'
+  | 'LINK'
+  | 'UNLINK';
 
 export type CreateSignedRequestProps = {
   method: HttpMethod;
@@ -26,9 +26,7 @@ export const createSignedRequest = async (props: CreateSignedRequestProps): Prom
     signature,
     body,
   } = props;
-
   const apiUrl = new URL(url);
-
   return signature.sign({
     method,
     hostname: apiUrl.host,

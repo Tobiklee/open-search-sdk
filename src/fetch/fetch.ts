@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { EnumOperation } from '../fetch';
 import { aws4Interceptor } from '../aws';
+import { EnumOperation } from '../fetch';
 
 export type FetchProps = {
   baseUrl: string;

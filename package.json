@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@elastic/elasticsearch": "^8",
-    "aws4-axios": "^2.4.9",
+    "aws-amplify": "^5.0.16",
     "axios": "0.25.0"
   },
   "keywords": [

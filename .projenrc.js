@@ -32,8 +32,8 @@ const project = new typescript.TypeScriptProject({
   ],
   deps: [
     '@elastic/elasticsearch@^8',
-    'axios@0.25.0',
-    'aws4-axios',
+    'axios',
+    'aws-amplify',
   ],
 });
 

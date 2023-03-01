@@ -33,5 +33,6 @@ export const doFetch = async (props: FetchProps) => {
   return axios.post(
     url,
     body,
+    options,
   );
 };

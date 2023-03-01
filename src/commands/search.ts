@@ -34,6 +34,10 @@ export class SearchCommand<T> implements ICommand<T> {
         baseUrl,
         index: this.index,
         operation: EnumOperation.Search,
+        body: {
+          query: this.query,
+          ...this.options,
+        },
       });
       if (response.status === 200) {
         return response.data as SearchResponse<T>;

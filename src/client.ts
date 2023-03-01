@@ -29,7 +29,7 @@ export type ClientProps = {
 export class Client implements IClient {
   readonly endpoint: string;
 
-  readonly fetchOptions?: FetchOptions;
+  private readonly fetchOptions?: FetchOptions;
 
   constructor(props: ClientProps) {
     const {

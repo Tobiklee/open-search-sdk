@@ -11,9 +11,9 @@ export type SearchCommandProps = {
 }
 
 export class SearchCommand<T> implements ICommand<T> {
-  readonly query: Record<string, any>;
-  readonly index?: string;
-  readonly options?: Omit<SearchRequestBody, 'query'>;
+  private readonly query: Record<string, any>;
+  private readonly index?: string;
+  private readonly options?: Omit<SearchRequestBody, 'query'>;
 
   constructor(props: SearchCommandProps) {
     const {

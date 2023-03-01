@@ -1,4 +1,5 @@
 import { QueryDslQueryContainer } from '@elastic/elasticsearch/lib/api/types';
+import { AxiosError } from 'axios';
 import { FetchOptions, ICommand } from './interface';
 import { doFetch, EnumOperation } from '../fetch';
 import { SearchRequestBody, SearchResponse } from '../models';
@@ -26,7 +27,7 @@ export class SearchCommand<T> implements ICommand<T> {
   }
 
   // TODO include error handling
-  async fetch(baseUrl: string, options?: FetchOptions): Promise<SearchResponse<T> | undefined> {
+  async fetch(baseUrl: string, options?: FetchOptions): Promise<SearchResponse<T> | void> {
     try {
       const response = await doFetch({
         options,
@@ -39,8 +40,8 @@ export class SearchCommand<T> implements ICommand<T> {
       }
       return undefined;
     } catch (e) {
-      console.error(e);
-      return undefined;
+      const error = e as AxiosError;
+      throw new Error(error.message);
     }
   }
 }

@@ -8,7 +8,7 @@ export interface IClient {
    *
    * @param command ICommand
    */
-  execute<T>(command: ICommand<T>): Promise<SearchResponse<T> | undefined>;
+  execute<T>(command: ICommand<T>): Promise<SearchResponse<T> | void>;
 }
 
 export type ClientProps = {
@@ -40,7 +40,7 @@ export class Client implements IClient {
     this.fetchOptions = fetchOptions;
   }
 
-  execute<T>(command: ICommand<T>): Promise<SearchResponse<T> | undefined> {
+  execute<T>(command: ICommand<T>): Promise<SearchResponse<T> | void> {
     return command.fetch(this.endpoint, this.fetchOptions);
   }
 }
